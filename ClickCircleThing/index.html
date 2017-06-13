@@ -1,0 +1,74 @@
+<html>
+	<head>
+		<style>
+			#target {
+				width : 200px;
+				height : 200px;
+				background-color : green;
+				border-radius : 100px;
+				display : none;
+                position: absolute;
+			}
+		</style>
+	</head>
+
+	<body>
+        <p>Your time is: <span id="reacttime"></span></p>
+		<p>Your best time is: <span id="besttime"></span></p>
+		<div id="target" onclick="clicked();"></div>
+		<script>
+			var timeShown, timeClicked, timeBest = -1;
+			var circle = document.getElementById("target");
+            
+            function random(min, max) {
+                return Math.floor(Math.random() * (max-min)) + min;
+            }
+            
+            function getRandomColor() {
+                return "rgb(" + random(0,255) + ", " + random(0, 255) + ", " + random(0, 255) + ")";
+            }
+            
+            function getRandomX() {
+                var maxWidth = window.innerWidth - 200;
+                return random(0, maxWidth) + "px";
+            }
+            
+            function getRandomY() {
+                var maxHeight = window.innerHeight - 200;
+                return random(0, maxHeight) + "px";
+            }
+            
+			function clicked() {
+				timeClicked = Date.now();
+				
+				var timeReact =  timeClicked - timeShown;
+				console.log("reaction time is " + timeReact);
+				
+                document.getElementById("reacttime").textContent = timeReact;
+                
+                if (timeBest == -1 || timeReact < timeBest) {
+                    timeBest = timeReact
+                    document.getElementById("besttime").textContent = timeBest;
+                }
+                
+				//invisible target
+				document.getElementById("target").style.display = "none";
+				
+                setTimeout(showTarget, random(1000, 5000));
+			}
+			
+			function showTarget() {
+				circle.style.display="block";
+                
+                circle.style.backgroundColor = getRandomColor();
+                
+                circle.style.top = getRandomY();
+                circle.style.left = getRandomX();
+                
+				timeShown = Date.now();
+			}
+			
+			showTarget();
+		</script>
+	</body>
+</html>
