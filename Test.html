@@ -1,5 +1,7 @@
 <html>
     <head>
+		<script src="jquery-3.2.1.js"></script>
+	
         <style>
             .rc{
                 position: relative;
@@ -79,9 +81,9 @@
               <div class="stream-item-header">
                    <img class="avatar js-action-profile-avatar" src="https://scontent.fmnl4-6.fna.fbcdn.net/v/t1.0-1/p160x160/18119239_1624323657595212_7791388149467759285_n.jpg?oh=8d54c8648c977e987191b5071a603ade&oe=59DB0D94" height="48" width="48" alt>
                   <span class="FullNameGroup">
-                    <strong class="fullname show-popup-with-id " data-aria-label-part="">Post Title | </strong>
+                    <strong class="fullname show-popup-with-id " id="ptitle1" data-aria-label-part="">Post Title | </strong>
                     <a class="account-group js-account-group js-action-profile js-user-profile-link js-nav" href="https://www.facebook.com/mcG0D" data-user-id="2386656156">
-                        <span>&rlm;</span><span class="UserBadges"></span><span class="UserNameBreak">&nbsp;</span><span class="username u-dir" dir="ltr" data-aria-label-part=""><b>Username</b></span></a>
+                        <span>&rlm;</span><span class="UserBadges"></span><span class="UserNameBreak">&nbsp;</span><span class="username u-dir" id="puname1" dir="ltr" data-aria-label-part=""><b>Username</b></span></a>
 
 
                     <!--<small class="time">
@@ -102,7 +104,7 @@
               </div>
             </div>
                 <div class="js-tweet-text-container">
-          <p class="TweetTextSize  js-tweet-text tweet-text" lang="en" data-aria-label-part="0">Try to click the Blue One!</p>
+          <p class="TweetTextSize  js-tweet-text tweet-text" id="pbody1" lang="en" data-aria-label-part="0">Try to click the Blue One!</p>
         </div>
 </div>
       
@@ -435,6 +437,8 @@
           <p class="TweetTextSize  js-tweet-text tweet-text" lang="en" data-aria-label-part="0">Try to click the Blue One!</p>
         </div>
 </div>
+
+	<script src="Trial.js"></script>
                                         
     </body>
 </html>
