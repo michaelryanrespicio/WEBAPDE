@@ -1,5 +1,6 @@
 <html>
     <head>
+        <title>TweetBook</title>
    		<script src="jquery-3.2.1.js"></script>
    		<!-- Fonts lang ituu -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
@@ -117,51 +118,75 @@
         <div id="more-post"> See more posts...</div>
         
         <script>
-            
             const URL = 'https://jsonplaceholder.typicode.com';
+            var last = 1;
             
             $(document).ready(function(){
+                loadNextTen();
                 
-                for (var i = 0 ; i < 10 ; i++) {
-                    
-                    var pb = document.createElement("div");
-                    var pc = document.createElement("div");
-                    var p = document.createElement("div");
-                    var pbu = document.createElement("div");
-                    var pt = document.createElement("strong");
-                    var line = document.createElement("b");
-                    var user = document.createElement("a");
-                    var info = document.createElement("div");
-                    
-                    $(pb).addClass("page-background");
-                    $(pc).addClass("post-container");
-                    $(p).addClass("post");
-                    $(pbu).addClass("post-by-user");
-                    $(pt).addClass("title");
-                    $(user).addClass("username");
-                    $(info).addClass("post-info");
-                    
-                    $(pbu).append(pt);
-                    $(pbu).append(line);
-                    $(pbu).append(user);
-                    $(p).append(pbu);        
-                    $(pc).append(p);        
-                    $(pc).append(info);
-                    $(pb).append(pc);
-                   
-                   $.ajax({
-                      url: URL + '/posts/' + (i+1),
-                      method: 'GET'
-                    }).then(function(data) {
+                $("#more-post").click(function(){
+                    last += 10;
+                    loadNextTen();
+                });
+            });
+            
+            function loadNextTen() {
+                for (var i = last ; i <= last+9 ; i++) {
+                    addPost(i);
+                }
+            }
+            
+            function addPost(num) {
+                $.ajax({
+                      url: URL + '/posts/' + num,
+                      async: false,
+                      method: 'GET',
+                      success: function(data){
+                          
+                        var pb = document.createElement("div");
+                        var pc = document.createElement("div");
+                        var p = document.createElement("div");
+                        var pbu = document.createElement("div");
+                        var pt = document.createElement("strong");
+                        var line = document.createElement("b");
+                        var user = document.createElement("a");
+                        var info = document.createElement("div");
+
+                        $(pb).addClass("page-background");
+                        $(pc).addClass("post-container");
+                        $(p).addClass("post");
+                        $(pbu).addClass("post-by-user");
+                        $(pt).addClass("title");
+                        $(user).addClass("username");
+                        $(info).addClass("post-info");
+
+                        $(pbu).append(pt);
+                        $(pbu).append(line);
+                        $(pbu).append(user);
+                        $(p).append(pbu);        
+                        $(pc).append(p);        
+                        $(pc).append(info);
+                        $(pb).append(pc);
+                        
                         $(pt).text(data.title);
                         $(line).text(" | ");
-                        user.innerHTML = "<b>" + data.userId + "</b>";
+                        
+                        $.ajax({
+                            url: URL + "/users/" + data.userId,
+                            async: false,
+                            method: 'GET',
+                            success: function(u){
+                                user.innerHTML = "<b>" + u.name + "</b>";
+                                $(user).attr("href", "mptry2.html");
+                            }
+                        });
+                          
                         $(info).text(data.body);
-                    }); 
-                    
-                     $("#post-div").append(pb);
-                }
-            });
+                          
+                        $("#post-div").append(pb);
+                      }
+                });
+            }
         </script>
     </body>
     
