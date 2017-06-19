@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <script src="jquery-3.2.1.js"></script>
+        
+        <style type="text/css">
+            .header{
+                width: 100%;
+                height: 10%;
+                background-color: cornflowerblue;
+                position: fixed;
+                left: 0;
+            }
+            .divider{
+                height: 10%;
+            }
+            .body-container{
+                position: relative;
+                height: 100%;
+            }
+            
+            .body-header{
+                position: fixed;
+                height: 25%;
+                width: 100%;
+                background-color: midnightblue;
+                left: 0;
+            }
+            
+            .profile-pic{
+                position: absolute;
+                left: 2%;
+                top: 30%;
+                height: 100px;
+                width: 100px;
+                background-color:skyblue;
+            }
+            
+            .profile-mp-container{
+                position: relative;
+            }
+            
+            .profile-menu{
+                position: fixed;
+                width: 40%;
+                height: 100%;
+                background-color: aliceblue;
+                left: 0;
+                float: left;
+            }
+            
+            .profile-posts-container{
+                position: relative;
+                height: 100%;
+                width: 60%;
+                background-color: aquamarine;
+                float: right;
+            }
+            
+            .post-div{
+            	border-left: 10px solid #bdc3c7;
+            	border-right: 10px solid #bdc3c7;
+				padding: 20px;
+				max-width: 700px;
+				width: 80%;
+				margin: 20px auto;
+				font-family: Source Sans Pro;
+                margin-top: 10%;
+            }
+
+            #more-post{
+            	margin-left: 45%;
+            	margin-right: 45%;
+            	font-family: Source Sans Pro;
+            	
+            }
+            
+        </style>
+     
+    </head>
+    
+    <body>
+        
+        <div class="header">
+        
+        
+        </div>
+        <div class="divider"></div>
+        <div class="body-container">
+            <div class="profile-mp-container">
+                <div class="profile-menu"></div>
+                <div class="profile-posts-container">
+                    <div class="post-div"></div>
+                    <div id="more-post"> See more posts...</div>
+                </div>
+            </div>
+            
+            <div class="body-header">
+                <div class="profile-pic"></div>
+                <div class="profile-username"></div>
+            </div>
+        </div>
+        
+        <div class="footer">
+        
+        </div>
+        
+    </body>
+</html>
