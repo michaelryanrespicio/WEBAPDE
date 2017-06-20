@@ -9,10 +9,14 @@
                 background-color: cornflowerblue;
                 position: fixed;
                 left: 0;
+                top:0;
+                z-index: 1;
             }
+            
             .divider{
                 height: 10%;
             }
+            
             .body-container{
                 position: relative;
                 height: 100%;
@@ -24,6 +28,8 @@
                 width: 100%;
                 background-color: midnightblue;
                 left: 0;
+                top:10%;
+                z-index: 1;
             }
             
             .profile-pic{
@@ -46,14 +52,15 @@
                 background-color: aliceblue;
                 left: 0;
                 float: left;
+                text-align: center;
             }
             
             .profile-posts-container{
                 position: relative;
-                height: 100%;
                 width: 60%;
                 background-color: aquamarine;
                 float: right;
+                right: 0;
             }
             
             .post-div{
@@ -74,6 +81,35 @@
             	
             }
             
+            .profile-button{
+                position: relative;
+                width: 100%;
+                height: 40px;
+            }
+            
+            .profile-box{
+                position: relative;
+                height: 240px;
+                width: 230px;
+                background-color: cadetblue;
+                margin: 10px;
+            }
+            
+            .profile-box-container{
+                position: relative;
+                height: 400px;
+                width: 250px;
+                align-content: center;
+                background-color: dodgerblue;
+                margin: 2px;
+            }
+            
+            .about{
+                position: relative;
+                height: 125px;
+                background-color: lightsteelblue;
+                
+            }
         </style>
      
     </head>
@@ -86,17 +122,49 @@
         </div>
         <div class="divider"></div>
         <div class="body-container">
-            <div class="profile-mp-container">
-                <div class="profile-menu"></div>
-                <div class="profile-posts-container">
-                    <div class="post-div"></div>
-                    <div id="more-post"> See more posts...</div>
-                </div>
-            </div>
-            
             <div class="body-header">
                 <div class="profile-pic"></div>
                 <div class="profile-username"></div>
+            </div>
+            <div class="divider" style="height: 26%"></div>
+            <div class="profile-mp-container">
+                <div class="profile-menu">
+                    <div style="height: 20px"></div>
+                    <div class="about">
+                        
+                    </div>
+                    <div style="height: 5px"></div>
+                    <div style="margin-left: 10px; margin-right: 10px">
+                    <div class="profile-box-container" style="float: left">
+                        <button class="profile-button">Photos</button>
+                        <div class="profile-box" style="margin-top: 0">
+
+                        </div>
+                    </div>
+                    
+                    <div class="profile-box-container" style="float: left">
+                        <button class="profile-button">Albums</button>
+                        <div class="profile-box" style="margin-top: 0">
+
+                        </div>
+                    </div>
+                    </div>    
+                </div>
+                
+                <div class="profile-posts-container">
+                    <div class="post-div">MADAYA</div>
+                    <div class="post-div">MADAYA</div>
+                    <div class="post-div">MADAYA</div>
+                    <div class="post-div">MADAYA</div>
+                    <div class="post-div">MADAYA</div>
+                    <div class="post-div">MADAYA</div>
+                    <div class="post-div">MADAYA</div>
+                    <div class="post-div">MADAYA</div>
+                    <div class="post-div">MADAYA</div>
+                    <div class="post-div">MADAYA</div>
+                    <div class="post-div">MADAYA</div>
+                    <div id="more-post"> See more posts...</div>
+                </div>
             </div>
         </div>
         
