@@ -1,0 +1,114 @@
+<html>
+    <head>
+        <script src="jquery-3.2.1.js"></script>
+        
+        <style type="text/css">
+            .header{
+                width: 100%;
+                height: 70px;
+                background-color: cornflowerblue;
+                position: fixed;
+                left: 0;
+                top: 0;
+                z-index: 1;
+            }
+            
+            #container {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                position: relative;
+                top: 70px;
+            }
+            
+            body{
+            	background-color: rgba(10,10,50,0.2);
+            }
+            
+            .thumbnail {
+                margin: 10px;
+                border: 1px solid #888;
+                width: 150px;
+                height: 150px;
+                float: left;
+            }
+            
+            .thumbnail img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .photo {
+                width: 600px;
+                height: 600px;
+            }
+            
+            .photo img {
+                width: 600px;
+                height: 600px;
+            }
+            
+            #more {
+                position: relative;
+                top: 70px;
+                width: 150px;
+                margin: 0 auto;
+                padding: 10px;
+                font-family: sans-serif;
+                color: darkblue;
+                font-weight: bold;
+            }
+        </style>
+     
+    </head>
+    
+    <body>
+        
+        <div class="header"></div>
+        
+        <div id="container">
+            
+        </div>
+        
+        <div id="more">See more photos...</div>
+        
+        <script>
+        const URL = 'https://jsonplaceholder.typicode.com';
+        const BY = 15;
+        var last = 1;
+            
+        $(document).ready(function(){
+            loadNext(BY);
+            
+            $("#more").click(function(){
+               last += BY;
+               loadNext(BY);
+            });
+        });
+            
+        function loadNext(num) {
+            for (var i = last ; i <= last+num-1 ; i++)
+                addPic(i);
+        }
+            
+        function addPic(num) {
+            $.ajax({
+              url: URL + '/photos/' + num,
+              async: false,
+              method: 'GET',
+              success: function(data){
+                  var d = document.createElement("div");
+                  var img = document.createElement("img");
+                  
+                  $(d).addClass("thumbnail");
+                  
+                  $(img).attr("src", data.thumbnailUrl);
+                  
+                  $(d).append(img);
+                  $("#container").append(d);
+              }
+            });
+        }
+        </script>
+    </body>
+</html>
