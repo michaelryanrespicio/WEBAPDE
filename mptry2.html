@@ -123,74 +123,81 @@
         
         <script>
             const URL = 'https://jsonplaceholder.typicode.com';
-            var last = 1;
+            const BY = 10;
+            var posts, users, last;
             
-            $(document).ready(function(){
-                loadNextTen();
-                
-                $("#more-post").click(function(){
-                    last += 10;
-                    loadNextTen();
+            function getPosts() {
+                return $.ajax({
+                    url: URL + '/posts',
+                    method: 'GET'
+                }).then(function(data){
+                    posts = data;
+                    last = data.length-1;
                 });
-            });
+            }
             
-            function loadNextTen() {
-                for (var i = last ; i <= last+9 ; i++) {
+            function getUsers() {
+                return $.ajax({
+                    url: URL + '/users',
+                    method: 'GET'
+                }).then(function(data){
+                   users = data;
+                });
+            }
+            
+            function loadNext(by) {
+                for (var i = last ; i >= last-(BY-1) && i >= 0 ; i--) {
                     addPost(i);
                 }
             }
             
-            function addPost(num) {
-                $.ajax({
-                      url: URL + '/posts/' + num,
-                      async: false,
-                      method: 'GET',
-                      success: function(data){
-                          
-                        var pb = document.createElement("div");
-                        var pc = document.createElement("div");
-                        var p = document.createElement("div");
-                        var pbu = document.createElement("div");
-                        var pt = document.createElement("strong");
-                        var line = document.createElement("b");
-                        var user = document.createElement("a");
-                        var info = document.createElement("div");
+            function addPost(num) {          
+                var pb = document.createElement("div");
+                var pc = document.createElement("div");
+                var p = document.createElement("div");
+                var pbu = document.createElement("div");
+                var pt = document.createElement("strong");
+                var line = document.createElement("b");
+                var user = document.createElement("a");
+                var info = document.createElement("div");
 
-                        $(pb).addClass("page-background");
-                        $(pc).addClass("post-container");
-                        $(p).addClass("post");
-                        $(pbu).addClass("post-by-user");
-                        $(pt).addClass("title");
-                        $(user).addClass("username");
-                        $(info).addClass("post-info");
+                $(pb).addClass("page-background");
+                $(pc).addClass("post-container");
+                $(p).addClass("post");
+                $(pbu).addClass("post-by-user");
+                $(pt).addClass("title");
+                $(user).addClass("username");
+                $(info).addClass("post-info");
 
-                        $(pbu).append(pt);
-                        $(pbu).append(line);
-                        $(pbu).append(user);
-                        $(p).append(pbu);        
-                        $(pc).append(p);        
-                        $(pc).append(info);
-                        $(pb).append(pc);
-                        
-                        $(pt).text(data.title);
-                        $(line).text(" | ");
-                        
-                        $.ajax({
-                            url: URL + "/users/" + data.userId,
-                            async: false,
-                            method: 'GET',
-                            success: function(u){
-                                user.innerHTML = "<b>" + u.name + "</b>";
-                                $(user).attr("href", "mptry2.html");
-                            }
-                        });
-                          
-                        $(info).text(data.body);
-                          
-                        $("#post-div").append(pb);
-                      }
-                });
+                $(pbu).append(pt);
+                $(pbu).append(line);
+                $(pbu).append(user);
+                $(p).append(pbu);        
+                $(pc).append(p);        
+                $(pc).append(info);
+                $(pb).append(pc);
+
+                $(pt).text(posts[num].title);
+                $(line).text(" | ");
+
+                user.innerHTML = "<b>" + users[posts[num].userId-1].username + "</b>";
+                $(user).attr("href", "mptry2.html");
+
+                $(info).text(posts[num].body);
+
+                $("#post-div").append(pb);
             }
+            
+            $(document).ready(function(){
+                $("#more-post").click(function(){
+                    last -= BY;
+                    loadNext(BY);
+                });
+                
+                $.when(getPosts(), getUsers()).done(function(){
+                    loadNext(BY);
+                });
+            });
         </script>
     </body>
     
