@@ -3,6 +3,8 @@
         <title>TweetBook</title>
         <link rel="shortcut icon" href="logo.png"/>
         <script src="jquery-3.2.1.js"></script>
+        <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Tahoma" rel="stylesheet">
         
         <style>
         /* HEADER */
@@ -84,53 +86,101 @@
             
             .body-container{
                 position: relative;
-                height: 100%;
             }
             
             .body-header{
-                position: fixed;
-                height: 150px;
-                width: 100%;
-                background-color: midnightblue;
-                left: 0;
-                top:80px;
-                z-index: 1;
-            }
-            
-            .profile-pic{
-                position: absolute;
-                left: 2%;
-                top: 30%;
-                height: 100px;
-                width: 100px;
-                background-color:skyblue;
-            }
-            
-            .profile-mp-container{
                 position: relative;
+                height: 150px;
+                top: 10px;
+                width: 100%;
+                border-top: 1px dashed forestgreen;
+                border-bottom: .5px solid forestgreen;
+            }
+            
+            #profile-name{
+                margin-left: 40px;
+                font-size: 100px;
+                font-family: Patrick Hand SC;
+                color: forestgreen;
+            }
+            
+            #profile-username{
+                font-size: 50px;
+                font-family: Tahoma;
+            }
+            .profile-mp-container{
+                margin-top: 20px;    
             }
             
             .profile-menu{
-                position: fixed;
-                width: 40%;
-                height: 100%;
-                background-color: aliceblue;
-                left: 0;
+                position: relative;
+                width: 25%;
                 float: left;
                 text-align: center;
             }
             
             .profile-posts-container{
                 position: relative;
-                width: 60%;
+                width: 70%;
                 background-color: aquamarine;
                 float: right;
                 right: 0;
+                border-left: 10px solid darkgreen;
+            	border-right: 10px solid darkgreen;
             }
             
-            .post-div{
-            	border-left: 10px solid #bdc3c7;
-            	border-right: 10px solid #bdc3c7;
+            .profile-album-container{
+                position: relative;
+                width: 70%;
+                background-color: aquamarine;
+                float: right;
+                right: 0;
+                display: hide;
+            }
+            
+            .post-by-user{  
+                font-size: small;
+                font-family: arial, sans-serif;
+                line-height: 1.2;
+                text-align: left;
+            }
+            
+             a{
+                text-decoration: none;
+                font-style: normal;
+                color: seagreen;
+            }
+            
+            .post{
+                margin-top: 5px;
+                margin-bottom: 1px;    
+                margin-left: 10px;
+                
+            }
+            
+            .post-info{
+                font-size: 14px;
+                line-height: 20px;
+                font-family: sans-serif;
+                color: darkslategray;
+            }
+            
+            .post-container{
+                border-bottom: 1px solid #e6ecf0;
+                border-top: 1px solid #e6ecf0;
+                display: grid;
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .title{
+            	color: darkgreen;
+				font-size: 40px;
+				font-family: Patrick Hand SC;
+            }
+            
+            #post-div{
+            	
 				padding: 20px;
 				max-width: 700px;
 				width: 80%;
@@ -139,41 +189,73 @@
                 margin-top: 10%;
             }
 
-            #more-post{
-            	margin-left: 45%;
-            	margin-right: 45%;
-            	font-family: Source Sans Pro;
-            	
+             #more{
+            	font-family: sans-serif;
+                font-size: 12px;
+            	position: relative;
+                width: 100px;
+                margin: auto;
+                margin-top: 10px;
+                margin-bottom: 10px;
             }
             
-            .profile-button{
-                position: relative;
-                width: 100%;
-                height: 40px;
-            }
-            
-            .profile-box{
-                position: relative;
-                height: 240px;
-                width: 230px;
-                background-color: cadetblue;
-                margin: 10px;
-            }
-            
-            .profile-box-container{
-                position: relative;
-                height: 400px;
-                width: 250px;
-                align-content: center;
-                background-color: dodgerblue;
-                margin: 2px;
+            #more:hover{
+                color: green;
+                text-decoration: underline;
+
             }
             
             .about{
                 position: relative;
-                height: 125px;
-                background-color: lightsteelblue;
+                height: 500px;
+                margin-top: 10px;
+                background-color: palegreen;
                 
+            }
+            
+            body{
+                background-color: #bdd4b4;
+            }
+        </style>
+        
+        <style>
+            #post-button{
+                background: url('sprites.png') no-repeat -345px -223px;
+                width: 70px;
+                height: 50px;
+                position: fixed;
+                right: 0;
+                bottom: 350px;
+                border-bottom-left-radius: 10px;
+                border-top-left-radius: 10px;
+                background-color: palegreen;
+                border-color: darkseagreen;
+                z-index: 1;
+            }
+            
+            #album-button{
+                background: url('sprites.png') no-repeat -280px -220px;
+                width: 70px;
+                height: 50px;
+                position: fixed;
+                right: 0;
+                bottom: 290px;
+                border-bottom-left-radius: 10px;
+                border-top-left-radius: 10px;
+                background-color: palegreen;
+                border-color: darkseagreen;
+                z-index: 1;
+            }
+        
+        </style>
+        <style>
+            #logo-footer{
+                background: url('sprites.png') no-repeat -209px -4px;
+                width: 207px;
+                height: 40px;
+                position: fixed;
+                bottom: 10px;
+                right: 5px;
             }
         </style>
      
@@ -192,61 +274,50 @@
                         <input id="hanap" type="text">
                     </form>
                     <button id="search-button"></button>
-                    
                 </div>    
             </div>
         </div>
         <div class="divider"></div>
         <div class="body-container">
             <div class="body-header">
-                <div class="profile-pic"></div>
-                <div class="profile-username"></div>
+                <span id="profile-name">Name</span>
+                <span id="profile-username">(Username)</span>
             </div>
-            <div class="divider" style="height: 26%"></div>
             <div class="profile-mp-container">
                 <div class="profile-menu">
-                    <div style="height: 20px"></div>
                     <div class="about">
-                        
+                    Put my info here!
                     </div>
-                    <div style="height: 5px"></div>
-                    <div style="margin-left: 10px; margin-right: 10px">
-                    <div class="profile-box-container" style="float: left">
-                        <button class="profile-button">Photos</button>
-                        <div class="profile-box" style="margin-top: 0">
-
-                        </div>
-                    </div>
-                    
-                    <div class="profile-box-container" style="float: left">
-                        <button class="profile-button">Albums</button>
-                        <div class="profile-box" style="margin-top: 0">
-
-                        </div>
-                    </div>
-                    </div>    
                 </div>
+                <div>
+                    <button id="post-button"></button>
+                    <button id="album-button"></button>
+                </div>
+                <div class="profile-album-container">
                 
+                </div>
                 <div class="profile-posts-container">
-                    <div class="post-div">MADAYA</div>
-                    <div class="post-div">MADAYA</div>
-                    <div class="post-div">MADAYA</div>
-                    <div class="post-div">MADAYA</div>
-                    <div class="post-div">MADAYA</div>
-                    <div class="post-div">MADAYA</div>
-                    <div class="post-div">MADAYA</div>
-                    <div class="post-div">MADAYA</div>
-                    <div class="post-div">MADAYA</div>
-                    <div class="post-div">MADAYA</div>
-                    <div class="post-div">MADAYA</div>
-                    <div id="more-post"> See more posts...</div>
+                    <div class="post-div">
+                        <div class="post-container">
+                            <div class="post">
+                                <div class="post-by-user">
+                                    <strong class="title">Post title</strong>
+                                    <br>
+                                    <a>Username</a>
+                                    <div class="post-info">
+                                        Put my posts here!
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="more"> See more posts...</div>
                 </div>
             </div>
         </div>
         
-        <div class="footer">
-        
-        </div>
+        <div id="logo-footer"></div>
+        <div style="height: 50px"></div>
         
     </body>
 </html>
