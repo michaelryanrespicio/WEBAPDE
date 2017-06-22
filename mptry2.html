@@ -67,6 +67,12 @@
         </style>
         
         <style>
+        /*HOVER BUTTONS HEADER*/
+            #home{
+                
+            }
+        </style>
+        <style>
             .rc{
                 position: relative;
             }
@@ -131,11 +137,16 @@
             	font-family: Source Sans Pro;
             	
             }
-            #more-post:hover{
-            	margin-left: 45%;
-            	margin-right: 45%;
-            	font-family: Source Sans Pro;
-            	background-color: rgba(10,10,50,0.5)
+            
+            #button-more-post{
+                background: none;
+                backface-visibility: hidden;
+                border: none;
+            }
+            
+            #button-more-post:hover{
+                color: green;
+                text-decoration: underline;
 
             }
 
@@ -146,7 +157,7 @@
             }
             
             body{
-            	background-color: gre;
+            	background-color: #bdd4b4;
                 
 
             }
@@ -177,7 +188,7 @@
         <div id="post-div">
         </div>
 
-        <div id="more-post"> See more posts...</div>
+        <div id="more-post"> <button id="button-more-post"> See more posts...</button></div>
         
         <script>
             const URL = 'https://jsonplaceholder.typicode.com';
