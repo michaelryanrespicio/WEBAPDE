@@ -27,6 +27,16 @@
                 margin-right: 25px;
             }
             
+            #highlight {
+                background-color: darkgreen;
+                width: 100px;
+                height: 80px;
+                position: fixed;
+                left: 85px;
+                top: 0;
+                z-index: -1;
+            }
+            
             #home{    
                 background: url('sprites.png') no-repeat -355px -280px;
                 width: 72px;
@@ -165,22 +175,15 @@
             }*/
             
         </style>
-      
-        <style>
-            
-            .footer{
-                height: 10px;
-            }
-            
-        </style>
     </head>
 
     <body>
         <div class="page-header">
             <div class="page-header-container">
-                <button id="home"> </button>
-                <button id="profile"></button>
-                <button id="picture"></button>
+                <div id="highlight"></div>
+                <a href="mptry2.html"><button id="home"> </button></a>
+                <a href="profile.html"><button id="profile"></button></a>
+                <a href="photopage.html"><button id="picture"></button></a>
                 <div style="float: right">
                     <form style="float:right">
                         <input id="hanap" type="text">
@@ -194,7 +197,7 @@
         </div>
 
         <div id="more-post"> <button id="button-more-post"> See more posts...</button></div>
-        <div class="footer"></div>
+        <div style="height: 20px"></div>
         
         <script>
             const URL = 'https://jsonplaceholder.typicode.com';
