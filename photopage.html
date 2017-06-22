@@ -1,7 +1,9 @@
 <html>
     <head>
         <script src="jquery-3.2.1.js"></script>
-        
+        <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+        <link rel="shortcut icon" href="logo.png"/>
         <style type="text/css">
             .page-header{
             height: 80px;
@@ -110,15 +112,20 @@
                 height: 600px;
             }
             
-            #more {
-                position: relative;
-                top: 70px;
-                width: 150px;
-                margin: 0 auto;
-                padding: 10px;
-                font-family: sans-serif;
-                color: darkblue;
-                font-weight: bold;
+            #more{
+            	font-family: sans-serif;
+                font-size: 12px;
+            	position: relative;
+                width: 100px;
+                top: 120px;
+                height: 50px;
+                margin: auto;
+            }
+            
+            #more:hover{
+                color: green;
+                text-decoration: underline;
+
             }
             
             #modal-bg {
@@ -219,7 +226,7 @@
             
         </div>
         
-        <div id="more">See more photos...</div>
+        <div id="more">See more posts...</div>
         
         <div id="modal-bg">
             <div id="photo">
@@ -233,7 +240,6 @@
                 </div>
             </div>
         </div>
-        
         
         <script>
         const URL = 'https://jsonplaceholder.typicode.com';
