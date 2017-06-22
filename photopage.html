@@ -38,7 +38,7 @@
                 height: 150px;
             }
             
-            .photo {
+            #photo {
                 background-color: white;
                 position: relative;
                 width: 600px;
@@ -47,7 +47,7 @@
                 margin: auto;
             }
             
-            .photo img {
+            #photo img {
                 width: 600px;
                 height: 600px;
             }
@@ -71,7 +71,7 @@
                 top: 0;
                 left: 0;
                 z-index: 1;
-                display: flex;
+                display: none;
                 align-content: center;
             }
             
@@ -81,24 +81,59 @@
             }
             
             .bot {
-                /*top: 480px;*/
                 position: absolute;
                 height: 40px;
-                bottom: 0;
+                bottom: 0px;
             }
             
-            .left {
-                float: left;
-            }
-            
-            .right {
-                float: right;
-            }
-            
-            #photo-info-bg {
+            .photo-info-bg {
                 background-color: rgba(0,0,0,0.8);
                 width: 100%;
+                display: none;
             }
+            
+            #title {
+                position: relative;
+                top: 20px;
+                left: 20px;
+                font-size: 1.2em;
+                font-weight: bold;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #album {
+                position: relative;
+                top: 12px;
+                left: 20px;
+                font-size: 1.5e,;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #username {
+                position: relative;
+                top: 12px;
+                float: right;
+                right: 20px;
+                font-size: 1.5e,;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #close {
+                position: relative;
+                float: right;
+                right: 10px;
+                font-size: 2.2em;
+                color: white;
+            }
+            
+            .clickable:hover,
+            .clickable:focus {
+                cursor: pointer;
+            }
+            
         </style>
      
     </head>
@@ -114,10 +149,16 @@
         <div id="more">See more photos...</div>
         
         <div id="modal-bg">
-            <div class="photo">
-                <div id="photo-info-bg" class="top"></div>
-                <div id="photo-info-bg" class="bot"></div>
-            </div>d
+            <div id="photo">
+                <div class="photo-info-bg top">
+                    <span id="title">Title</span>
+                    <span id="close" class="clickable">&times</span>
+                </div>
+                <div class="photo-info-bg bot">
+                    <span id="album" class="clickable">From Album</span>
+                    <span id="username" class="clickable">username</span>
+                </div>
+            </div>
         </div>
         
         
@@ -125,6 +166,7 @@
         const URL = 'https://jsonplaceholder.typicode.com';
         const BY = 15;
         var photos, albums, users, last;
+        var fading = false;
             
         function getPhotos() {
             return $.ajax({
@@ -164,7 +206,8 @@
           var img = document.createElement("img");
 
           $(d).addClass("thumbnail");
-
+            
+          $(d).attr("data-photoId", num);
           $(img).attr("src", photos[num].thumbnailUrl);
 
           $(d).append(img);
@@ -176,6 +219,44 @@
                last -= BY;
                loadNext(BY);
             });
+            
+            $("#close").click(function(){
+                $("#modal-bg").css("display", "none");
+            });
+            
+            $(document).on("click", ".thumbnail", function(event){
+                var photoId = event.currentTarget.getAttribute("data-photoId");
+                var photoUrl = photos[photoId].url;
+                var photoTitle = photos[photoId].title;
+                var albumId = photos[photoId].albumId-1;
+                var userId = albums[albumId].userId-1;
+                
+                var albumname = albums[albumId].title;
+                var uname = users[userId].username;
+                
+                $("#title").text(photoTitle);
+                $("#photo").css("background-image", "url(" + photoUrl + ")");
+                $("#album").text(albumname);
+                $("#username").text(uname);
+                
+                $("#modal-bg").css("display", "flex");
+            });
+            
+            $(document).on("mouseover", "#photo", function(event){
+                $(".photo-info-bg").stop();
+                $(".photo-info-bg").fadeIn(250);
+            });
+            
+            $(document).on("mouseout", "#photo", function(event){
+                $(".photo-info-bg").stop();
+                $(".photo-info-bg").fadeOut(250);
+            });
+            
+            window.onclick = function(event) {
+                if (event.target == document.getElementById("modal-bg")) {
+                    $("#modal-bg").css("display", "none");
+                }
+            }
             
             $.when(getPhotos(), getUsers(), getAlbums()).done(function(){
                 loadNext(BY);
