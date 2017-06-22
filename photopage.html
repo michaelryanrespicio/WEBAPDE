@@ -39,8 +39,12 @@
             }
             
             .photo {
+                background-color: white;
+                position: relative;
                 width: 600px;
                 height: 600px;
+                align-self: center;
+                margin: auto;
             }
             
             .photo img {
@@ -58,6 +62,43 @@
                 color: darkblue;
                 font-weight: bold;
             }
+            
+            #modal-bg {
+                background-color: rgba(0,0,0,0.7);
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                display: flex;
+                align-content: center;
+            }
+            
+            .top {
+                top: 0px;
+                height: 60px;
+            }
+            
+            .bot {
+                /*top: 480px;*/
+                position: absolute;
+                height: 40px;
+                bottom: 0;
+            }
+            
+            .left {
+                float: left;
+            }
+            
+            .right {
+                float: right;
+            }
+            
+            #photo-info-bg {
+                background-color: rgba(0,0,0,0.8);
+                width: 100%;
+            }
         </style>
      
     </head>
@@ -72,43 +113,75 @@
         
         <div id="more">See more photos...</div>
         
+        <div id="modal-bg">
+            <div class="photo">
+                <div id="photo-info-bg" class="top"></div>
+                <div id="photo-info-bg" class="bot"></div>
+            </div>d
+        </div>
+        
+        
         <script>
         const URL = 'https://jsonplaceholder.typicode.com';
         const BY = 15;
-        var last = 1;
+        var photos, albums, users, last;
             
-        $(document).ready(function(){
-            loadNext(BY);
+        function getPhotos() {
+            return $.ajax({
+                url: URL + '/photos',
+                method: 'GET'
+            }).then(function(data){
+                photos = data;
+                last = photos.length-1;
+            })
+        }
             
-            $("#more").click(function(){
-               last += BY;
-               loadNext(BY);
-            });
-        });
-            
+        function getAlbums() {
+            return $.ajax({
+                url: URL + '/albums',
+                method: 'GET'
+            }).then(function(data){
+               albums = data;
+            }); 
+        }
+        
+        function getUsers() {
+            return $.ajax({
+                url: URL + '/users',
+                method: 'GET'
+            }).then(function(data){
+               users = data;
+            }); 
+        }    
+        
         function loadNext(num) {
-            for (var i = last ; i <= last+num-1 ; i++)
+            for (var i = last ; i >= last-(num-1) && i >= 0 ; i--)
                 addPic(i);
         }
             
         function addPic(num) {
-            $.ajax({
-              url: URL + '/photos/' + num,
-              async: false,
-              method: 'GET',
-              success: function(data){
-                  var d = document.createElement("div");
-                  var img = document.createElement("img");
-                  
-                  $(d).addClass("thumbnail");
-                  
-                  $(img).attr("src", data.thumbnailUrl);
-                  
-                  $(d).append(img);
-                  $("#container").append(d);
-              }
-            });
+          var d = document.createElement("div");
+          var img = document.createElement("img");
+
+          $(d).addClass("thumbnail");
+
+          $(img).attr("src", photos[num].thumbnailUrl);
+
+          $(d).append(img);
+          $("#container").append(d);
         }
+        
+        $(document).ready(function(){
+            $("#more").click(function(){
+               last -= BY;
+               loadNext(BY);
+            });
+            
+            $.when(getPhotos(), getUsers(), getAlbums()).done(function(){
+                loadNext(BY);
+            });
+        });
+        
         </script>
     </body>
 </html>
