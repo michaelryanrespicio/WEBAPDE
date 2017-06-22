@@ -5,17 +5,65 @@
    		<!-- Fonts lang ituu -->
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
+        <link rel="shortcut icon" href="logo.png"/>
         <style>
         /* HEADER */
             .page-header{
-            height: 70px;
-            background-color: cornflowerblue;
+            height: 80px;
+            background-color: forestgreen;
             position: fixed;
             top: 0;
             right: 0;
             left: 0;
+            min-width: 800px;
             }
             
+            .page-header-container{
+                margin-left: 100px;
+                margin-top: 5px;
+            }
+            
+            .page-header-container button{
+                margin-right: 25px;
+            }
+            
+            #home{    
+                background: url('sprites.png') no-repeat -355px -280px;
+                width: 72px;
+                height: 71px;
+                border: none;
+            }
+            
+            #picture{
+                background: url('sprites.png') no-repeat -177px -290px;
+                width: 76px;
+                height: 60px;
+                border: none;
+            }
+            
+            #profile{
+                background: url('sprites.png') no-repeat -11px -287px;
+                width: 61px;
+                height: 66px;
+                border: none;
+            }
+            
+            #hanap{
+                margin-right: 50px;
+                margin-top: 20px;
+                height: 35px;
+                width: 250px;
+            }
+            
+            #search-button{
+                background: url('sprites.png') no-repeat -104px -296px;
+                width: 44px;
+                height: 44px;
+                border: none;
+                margin-top: 15px;
+                margin-right: 10px;
+                
+            }
         </style>
         
         <style>
@@ -34,13 +82,13 @@
             }
             
             .post-container:hover{
-                background-color: #b0e0e6;    
+                background-color: darkseagreen;    
             }
             
             a{
                 text-decoration: none;
                 font-style: normal;
-                color: blue;
+                color: seagreen;
             }
             
             .post{
@@ -54,7 +102,6 @@
                 border-top: 1px solid #e6ecf0;
                 display: grid;
                 flex-direction: row;
-                justify-content: center;
                 align-items: center;
             }
             
@@ -65,14 +112,13 @@
             .post-info{
                 font-size: 14px;
                 line-height: 20px;
-                
             }
-
+            
             #post-div{
-            	border-left: 10px solid #bdc3c7;
-            	border-right: 10px solid #bdc3c7;
+            	border-left: 10px solid darkgreen;
+            	border-right: 10px solid darkgreen;
 				padding: 20px;
-				max-width: 700px;
+				max-width: 800px;
 				width: 80%;
 				margin: 20px auto;
 				font-family: Source Sans Pro;
@@ -100,7 +146,8 @@
             }
             
             body{
-            	background-color: rgba(10,10,50,0.2)
+            	background-color: gre;
+                
 
             }
             /* Will be used for the future, if there will be successive posts
@@ -114,7 +161,18 @@
 
     <body>
         <div class="page-header">
-        
+            <div class="page-header-container">
+                <button id="home"> </button>
+                <button id="profile"></button>
+                <button id="picture"></button>
+                <div style="float: right">
+                    <form style="float:right">
+                        <input id="hanap" type="text">
+                    </form>
+                    <button id="search-button"></button>
+                    
+                </div>    
+            </div>
         </div>
         <div id="post-div">
         </div>
@@ -178,7 +236,7 @@
                 $(pb).append(pc);
 
                 $(pt).text(posts[num].title);
-                $(line).text(" | ");
+                line.innerHTML="<br>";
 
                 user.innerHTML = "<b>" + users[posts[num].userId-1].username + "</b>";
                 $(user).attr("href", "mptry2.html");
