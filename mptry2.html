@@ -269,7 +269,7 @@
                 line.innerHTML="<br>";
 
                 user.innerHTML = "<b>" + users[posts[num].userId-1].username + "</b>";
-                $(user).attr("href", "mptry2.html");
+                $(user).attr("href", "profile.html?userId=" + posts[num].userId);
 
                 $(info).text(posts[num].body);
 

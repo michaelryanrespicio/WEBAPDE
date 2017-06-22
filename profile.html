@@ -30,10 +30,10 @@
             
             #highlight {
                 background-color: darkgreen;
-                width: 100px;
+                width: 90px;
                 height: 80px;
                 position: fixed;
-                left: 85px;
+                left: 186px;
                 top: 0;
                 z-index: -1;
             }
@@ -98,14 +98,18 @@
             }
             
             #profile-name{
+                position: relative;
+                top: 80px;
                 margin-left: 40px;
-                font-size: 100px;
+                font-size: 50px;
                 font-family: Patrick Hand SC;
                 color: forestgreen;
             }
             
             #profile-username{
-                font-size: 50px;
+                position: relative;
+                top: 80px;
+                font-size: 20px;
                 font-family: Tahoma;
             }
             .profile-mp-container{
@@ -116,7 +120,6 @@
                 position: relative;
                 width: 25%;
                 float: left;
-                text-align: center;
             }
             
             .profile-posts-container{
@@ -208,9 +211,20 @@
             .about{
                 position: relative;
                 height: 500px;
-                margin-top: 10px;
-                background-color: palegreen;
+                padding-top: 15px;
+                background-color: aquamarine;
                 
+            }
+            
+            p {
+                font-family: sans-serif;
+                color: darkslategray;
+                position: relative;
+                left: 10px; 
+            }
+            
+            p.indent {
+                left: 20px; 
             }
             
             body{
@@ -225,7 +239,7 @@
                 height: 50px;
                 position: fixed;
                 right: 0;
-                bottom: 350px;
+                top: 100px;
                 border-bottom-left-radius: 10px;
                 border-top-left-radius: 10px;
                 background-color: palegreen;
@@ -239,7 +253,7 @@
                 height: 50px;
                 position: fixed;
                 right: 0;
-                bottom: 290px;
+                top: 160px;
                 border-bottom-left-radius: 10px;
                 border-top-left-radius: 10px;
                 background-color: palegreen;
@@ -265,8 +279,8 @@
         
         <div class="page-header">
             <div class="page-header-container">
-                <div id="highlight"></div>
                 <a href="mptry2.html"><button id="home"> </button></a>
+                <div id="highlight"></div>
                 <a href="profile.html"><button id="profile"></button></a>
                 <a href="photopage.html"><button id="picture"></button></a>
                 <div style="float: right">
@@ -286,7 +300,6 @@
             <div class="profile-mp-container">
                 <div class="profile-menu">
                     <div class="about">
-                    Put my info here!
                     </div>
                 </div>
                 <div>
@@ -319,5 +332,135 @@
         <div id="logo-footer"></div>
         <div style="height: 50px"></div>
         
+        <script>
+            const URL = 'https://jsonplaceholder.typicode.com';
+            var u_id;
+            var posts, users, photos, albums;
+            
+            function getPosts(){
+                return $.ajax({
+                    url: URL + '/posts',
+                    method: 'GET'
+                }).then(function(data){
+                    posts = data;
+                });
+            }
+            
+            function getUsers(){
+                return $.ajax({
+                    url: URL + '/users',
+                    method: 'GET'
+                }).then(function(data){
+                    users = data;
+                });
+            }
+            
+            function getPhotos(){
+                return $.ajax({
+                    url: URL + '/photos',
+                    method: 'GET'
+                }).then(function(data){
+                    photos = data;
+                });
+            }
+            
+            function getAlbums(){
+                return $.ajax({
+                    url: URL + '/albums',
+                    method: 'GET'
+                }).then(function(data){
+                    albums = data;
+                });
+            }
+            
+            function loadHeader(){
+                $("#profile-name").text(users[u_id].name);
+                $("#profile-username").text("(" + users[u_id].username + ")");
+            }
+            
+            function loadAbout(){
+                var p = document.createElement("p");
+                var user = users[u_id];
+                
+                $(p).text("email: " + user.email);
+                $(".about").append(p);
+                
+                p = document.createElement("p");
+                $(p).text("address:");
+                $(".about").append(p);
+                
+                p = document.createElement("p");
+                $(p).addClass("indent");
+                $(p).text(user.address.street);
+                $(".about").append(p);
+                
+                p = document.createElement("p");
+                $(p).addClass("indent");
+                $(p).text(user.address.suite);
+                $(".about").append(p);
+                
+                p = document.createElement("p");
+                $(p).addClass("indent");
+                $(p).text(user.address.city);
+                $(".about").append(p);
+                
+                p = document.createElement("p");
+                $(p).addClass("indent");
+                $(p).text(user.address.zipcode);
+                $(".about").append(p);
+                
+                p = document.createElement("p");
+                $(p).text("phone: " + user.phone);
+                $(".about").append(p);
+                
+                p = document.createElement("p");
+                $(p).text("website: " + user.website);
+                $(".about").append(p);
+                
+                p = document.createElement("p");
+                $(p).text("company:");
+                $(".about").append(p);
+                
+                p = document.createElement("p");
+                $(p).addClass("indent");
+                $(p).text("name: " + user.company.name);
+                $(".about").append(p);
+                
+                p = document.createElement("p");
+                $(p).addClass("indent");
+                $(p).text('"' + user.company.catchPhrase + '"');
+                $(".about").append(p);
+                
+                p = document.createElement("p");
+                $(p).addClass("indent");
+                $(p).text("business: " + user.company.bs);
+                $(".about").append(p);
+            }
+            
+            $(document).ready(function(){
+                
+                u_id = document.URL;
+                u_id = u_id.substr(u_id.indexOf("?")+1);
+                u_id = u_id.substr(u_id.indexOf("=")+1);
+                u_id--;
+                
+                $.when(getPosts(), getUsers(), getPhotos(), getAlbums()).done(function(){
+                    loadHeader();
+                    loadAbout();
+                })
+                
+                $("#post-button").click(function(){
+                    $(".profile-album-container").hide();
+                    $(".profile-posts-container").show();
+                });
+                
+                $("#album-button").click(function(){
+                    $(".profile-posts-container").hide();
+                    $(".profile-album-container").show();
+                    
+                });
+            });
+            
+        </script>
     </body>
 </html>
