@@ -1,100 +1,340 @@
-<!DOCTYPE html>
 <html>
     <head>
-        <title>Profile Page</title>    
         <script src="jquery-3.2.1.js"></script>
-            <!-- Fonts lang ituu -->
-            <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
-            <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
-
-        <style>
-            /* HEADER */
-            .page-header{
-                height: 10%;            
-                background-color: cornflowerblue;
+        
+        <style type="text/css">
+            .header{
+                width: 100%;
+                height: 10%;
+                background-color: forestgreen;
                 position: fixed;
-                top: 0;
-                right: 0;
                 left: 0;
+                top:0;
+                z-index: 1;
+            }
+            
+            .divider{
+                height: 10%;
+            }
+            
+            .body-container{
+                position: relative;
+                height: 100%;
+            }
+            
+            .body-header{
+                position: fixed;
+                height: 25%;
+                width: 100%;
+                background-color: rgba(0,40,0,1.8);
+                left: 0;
+                top:10%;
+                border-width: 25px;
+                border-color: green;
+                z-index: 1;
+            }
+            
+            .profile-pic{
+                position: absolute;
+                left: 2%;
+                top: 30%;
+                height: 100px;
+                width: 100px;
+                background-color:skyblue;
+            }
+            
+            .profile-mp-container{
+                position: relative;
+            }
+            
+            .profile-menu{
+                position: fixed;
+                width: 40%;
+                height: 100%;
+                background-color: aliceblue;
+                left: 0;
+                float: left;
+                text-align: center;
+            }
+            
+            .profile-posts-container{
+                position: relative;
+                width: 60%;
+                background-color: #bdd4b4;
+                float: right;
+                right: 0;
+            }
+            
+            .post-div{
+                border-left: 10px solid #bdc3c7;
+                border-right: 10px solid #bdc3c7;
+                                padding: 20px;
+                                max-width: 700px;
+                                width: 80%;
+                                margin: 20px auto;
+                                font-family: Source Sans Pro;
+                margin-top: 10%;
+            }
+            #more-post{
+                margin-left: 45%;
+                margin-right: 45%;
+                font-family: Source Sans Pro;
+                
+            }
+/*
+            .profile-username{
+                background-color: green;
+            }*/
+        
+            
+            .profile-button{
+                position: relative;
+                width: 100%;
+                height: 40px;
+            }
+            
+            .profile-box{
+                position: relative;
+                height: 240px;
+                width: 230px;
+                background-color: cadetblue;
+                margin: 10px;
+            }
+            
+            .profile-box-container{
+                position: relative;
+                height: 400px;
+                width: 250px;
+                align-content: center;
+                background-color: green;
+                margin: 2px;
+            }
+            
+            .about{
+                position: relative;
+                height: 125px;
+                background-color: lightgreen;
+                
+            }
+
+            a{
+                text-decoration:none;
+                color: initial;
+            }
+
+            body{
+                padding-bottom: 70px;
+
             }
 
         </style>
-
-            <style type="text/css">
-                #whole-div{ 
-                    border-left: 20px solid #bdc3c7;
-                    border-right: 20px solid #bdc3c7;*/
-                    padding: 20px;
-                    max-width: 80%;
-                    width: 80%;
-                    margin: 10px auto;
-                    font-family: Source Sans Pro;
-                    position: relative;
-                    margin-top: 10%;
-                }
-
-                #pic-uname{
-                    height:200px;
-                    width:100%;
-                    background-color: yellow;
-                    /*border: 2px solid #cdc4b6;*/
-                    position : relative;
-                }
-
-                #pic{
-                    position: absolute;
-                    height:150px;
-                    width:150px;
-                    background-color: green;
-                    float:left;
-                    margin: 0%;
-                    bottom: 0px;
-                }
-
-                #uname{
-                    height:70px;
-                    width:300px;
-                    background-color: blue;
-                    float: left;
-                    position: absolute;
-                    bottom: 0px;
-                    left: 160px;
-
-                }
-
-                #photos{
-                    height:500px;
-                    width:29%;
-                    margin:0%;
-                    /*border: 2px solid #cdc4b6;*/
-                    background-color: orange;
-                    float:left;
-                }
-
-                #posts{
-                    height:500px;
-                    width:69%;
-                    background-color: red;
-                    float:right;
-                    border: 2px solid #cdc4b6;
-                }
-
-
-            </style>
+     
     </head>
     
     <body>
-        <div id="whole-div">
-            <div id="pic-uname">
-                <div id="pic"></div>
-                <div id="uname">Username</div>
+        
+        <div class="header">
+        
+        
+        </div>
+        <div class="divider"></div>
+        <div class="body-container">
+            <div class="body-header">
+                <div class="profile-pic"></div>
+                <div class="profile-username"></div>
             </div>
-            <div id="photos">Photos</div>
-            <div id="posts">Posts</div>
+            <div class="divider" style="height: 26%"></div>
+            <div class="profile-mp-container">
+                <div class="profile-menu">
+                    <div style="height: 20px"></div>
+                    <div class="about">
+                        
+                    </div>
+                    <div style="height: 5px"></div>
+                    <div style="margin-left: 10px; margin-right: 10px">
+                    <div class="profile-box-container" style="float: left">
+
+                        <button class="profile-button" action="photos.html"><a href="photos.html">Photos</a></button>
+                        <div class="profile-box" style="margin-top: 0">
+
+                        </div>
+                    </div>
+                    
+                    <div class="profile-box-container" style="float: left">
+                        <button class="profile-button"><a href="photos.html">Albums</a></button>
+                        <div class="profile-box" style="margin-top: 0">
+
+                        </div>
+                    </div>
+                    </div>    
+                </div>
+                
+                <div class="profile-posts-container">
+                    <div class="post-div"></div>
+                    <div class="post-div"></div>
+                    <div class="post-div"></div>
+                    <div class="post-div"></div>
+                    <div class="post-div"></div>
+                    <div class="post-div"></div>
+                    <div class="post-div"></div>
+                    <div class="post-div"></div>
+                    <div class="post-div"></div>
+                    <div class="post-div"></div>
+                    <div class="post-div"></div>
+                    <div id="more-post"> See more posts...</div>
+                </div>
+            </div>
         </div>
         
-        <div class="page-header">
-
+        <div class="footer">
+        
         </div>
+        
+        <script type="text/javascript">
+             
+        const URL = 'https://jsonplaceholder.typicode.com';
+        const BY = 10;
+
+        var posts, users, last;
+
+           function goToPhotos(){
+
+           }
+
+           function getPosts() {
+                return $.ajax({
+                    url: URL + '/posts',
+                    method: 'GET'
+                }).then(function(data){
+                    posts = data;
+                    last = data.length-1;
+                });
+            }
+
+            function loadNext(by) {
+                for (var i = last ; i >= last-(BY-1) && i >= 0 ; i--) {
+                    addPost(i);
+                }
+            }
+
+            function addPost(num){  
+
+                 var pd = document.createElement("div");
+                 var pc = document.createElement("div");
+                 var p = document.createElement("div");
+                // var pbu = document.createElement("div");
+                 var pt = document.createElement("strong");
+                // var line = document.createElement("b");
+                // var user = document.createElement("a");
+                // var info = document.createElement("div");
+                 $(pd).addClass("post-div");
+                 $(pc).addClass("post-container");
+                // $(p).addClass("post");
+                // $(pbu).addClass("post-by-user");
+                // $(pt).addClass("title");
+                // $(user).addClass("username");
+                // $(info).addClass("post-info");
+                // $(pbu).append(pt);
+                // $(pbu).append(line);
+                // $(pbu).append(user);
+                // $(p).append(pbu);        
+                 $(pc).append(p);        
+                 $(pc).append(info);
+                 $(pd).append(pc);
+                // $(pt).text(posts[num].title);
+                // $(line).text(" | ");
+                // user.innerHTML = "<b>" + users[posts[num].userId-1].posts + "</b>";
+                 $(user).attr("href", "profilepage.html");
+                 $(info).text(posts[num].body);
+                 $(".post-div").append(pd);
+                 document.getElementByClassName("post-div").innerHTML=
+            }
+
+            $(document).ready(function(){
+                $.when(getPosts()).done(function(){
+                    last -= BY;
+                    loadNext(BY);
+                });
+
+                $.when(getPosts()).done(function(){
+                    loadNext(BY);
+                });
+            });
+
+
+        // const URL = 'https://jsonplaceholder.typicode.com';
+        //     const BY = 10;
+        //     var posts, users, last;
+            
+        //     function getPosts() {
+        //         return $.ajax({
+        //             url: URL + '/posts',
+        //             method: 'GET'
+        //         }).then(function(data){
+        //             posts = data;
+        //             last = data.length-1;
+        //         });
+        //     }
+            
+        //     function getUsers() {
+        //         return $.ajax({
+        //             url: URL + '/users',
+        //             method: 'GET'
+        //         }).then(function(data){
+        //            users = data;
+        //         });
+        //     }
+            
+        //     function loadNext(by) {
+        //         for (var i = last ; i >= last-(BY-1) && i >= 0 ; i--) {
+        //             addPost(i);
+        //         }
+        //     }
+            
+        //     function addPost(num) {          
+        //         var pb = document.createElement("div");
+        //         var pc = document.createElement("div");
+        //         var p = document.createElement("div");
+        //         var pbu = document.createElement("div");
+        //         var pt = document.createElement("strong");
+        //         var line = document.createElement("b");
+        //         var user = document.createElement("a");
+        //         var info = document.createElement("div");
+        //         $(pb).addClass("page-background");
+        //         $(pc).addClass("post-container");
+        //         $(p).addClass("post");
+        //         $(pbu).addClass("post-by-user");
+        //         $(pt).addClass("title");
+        //         $(user).addClass("username");
+        //         $(info).addClass("post-info");
+        //         $(pbu).append(pt);
+        //         $(pbu).append(line);
+        //         $(pbu).append(user);
+        //         $(p).append(pbu);        
+        //         $(pc).append(p);        
+        //         $(pc).append(info);
+        //         $(pb).append(pc);
+        //         $(pt).text(posts[num].title);
+        //         $(line).text(" | ");
+        //         user.innerHTML = "<b>" + users[posts[num].userId-1].username + "</b>";
+        //         $(user).attr("href", "mptry2.html");
+        //         $(info).text(posts[num].body);
+        //         $("#post-div").append(pb);
+        //     }
+            
+        //     $(document).ready(function(){
+        //         $("#more-post").click(function(){
+        //             last -= BY;
+        //             loadNext(BY);
+        //         });
+                
+        //         $.when(getPosts(), getUsers()).done(function(){
+        //             loadNext(BY);
+        //         });
+        //     });
+
+
+
+        </script>
     </body>
 </html>
