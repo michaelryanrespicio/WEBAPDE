@@ -1,18 +1,83 @@
 <html>
     <head>
+        <title>TweetBook</title>
+        <link rel="shortcut icon" href="logo.png"/>
         <script src="jquery-3.2.1.js"></script>
         
-        <style type="text/css">
-            .header{
-                width: 100%;
-                height: 10%;
-                background-color: cornflowerblue;
+        <style>
+        /* HEADER */
+            .page-header{
+                height: 80px;
+                background-color: forestgreen;
                 position: fixed;
+                top: 0;
+                right: 0;
                 left: 0;
-                top:0;
+                min-width: 800px;
                 z-index: 1;
             }
             
+            .page-header-container{
+                margin-left: 100px;
+                margin-top: 5px;
+            }
+            
+            .page-header-container button{
+                margin-right: 25px;
+            }
+            
+            #highlight {
+                background-color: darkgreen;
+                width: 100px;
+                height: 80px;
+                position: fixed;
+                left: 85px;
+                top: 0;
+                z-index: -1;
+            }
+            
+            #home{    
+                background: url('sprites.png') no-repeat -355px -280px;
+                width: 72px;
+                height: 71px;
+                border: none;
+            }
+            
+            #picture{
+                background: url('sprites.png') no-repeat -177px -290px;
+                width: 76px;
+                height: 60px;
+                border: none;
+            }
+            
+            #profile{
+                background: url('sprites.png') no-repeat -11px -287px;
+                width: 61px;
+                height: 66px;
+                border: none;
+            }
+            
+            #hanap{
+                margin-right: 50px;
+                margin-top: 20px;
+                height: 35px;
+                width: 250px;
+                border-radius: 10px;
+            }
+            
+            #search-button{
+                background: url('sprites.png') no-repeat -104px -296px;
+                width: 44px;
+                height: 44px;
+                border: none;
+                margin-top: 15px;
+                margin-right: 10px;
+                
+                
+            }
+        </style>
+        
+        <style type="text/css">
             .divider{
                 height: 10%;
             }
@@ -24,11 +89,11 @@
             
             .body-header{
                 position: fixed;
-                height: 25%;
+                height: 150px;
                 width: 100%;
                 background-color: midnightblue;
                 left: 0;
-                top:10%;
+                top:80px;
                 z-index: 1;
             }
             
@@ -116,9 +181,20 @@
     
     <body>
         
-        <div class="header">
-        
-        
+        <div class="page-header">
+            <div class="page-header-container">
+                <div id="highlight"></div>
+                <a href="mptry2.html"><button id="home"> </button></a>
+                <a href="profile.html"><button id="profile"></button></a>
+                <a href="photopage.html"><button id="picture"></button></a>
+                <div style="float: right">
+                    <form style="float:right">
+                        <input id="hanap" type="text">
+                    </form>
+                    <button id="search-button"></button>
+                    
+                </div>    
+            </div>
         </div>
         <div class="divider"></div>
         <div class="body-container">
