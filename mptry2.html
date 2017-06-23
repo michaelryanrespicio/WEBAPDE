@@ -191,7 +191,7 @@
             <div class="page-header-container">
                 <div id="highlight"></div>
                 <a href="mptry2.html"><button id="home"> </button></a>
-                <a href="profile.html"><button id="profile"></button></a>
+                <a id="profile"><button id="profile"></button></a>
                 <a href="photopage.html"><button id="picture"></button></a>
                 <div style="float: right">
                     <form style="float:right">
@@ -234,8 +234,12 @@
             }
             
             function loadNext(by) {
-                for (var i = last ; i >= last-(BY-1) && i >= 0 ; i--) {
+                for (var i = last ; i >= last-(by-1) && i >= 0 ; i--) {
                     addPost(i);
+                    if (i == 0) {
+                        last = 0;
+                        break;
+                    }
                 }
             }
             
@@ -284,6 +288,7 @@
                 
                 $.when(getPosts(), getUsers()).done(function(){
                     loadNext(BY);
+                    $("a#profile").attr('href', 'profile.html?userId=' + posts[posts.length-1].userId);
                 });
             });
         </script>
