@@ -239,18 +239,18 @@
         
         <div id="more">See more photos...</div>
         
-        <div id="modal-bg">
-            <div id="photo">
-                <div class="photo-info-bg top">
-                    <span id="title">Title</span>
-                    <span id="close" class="clickable">&times</span>
-                </div>
-                <div class="photo-info-bg bot">
-                    <span id="album" class="clickable">From Album</span>
-                    <span id="username" class="clickable">username</span>
+            <div id="modal-bg">
+                <div id="photo">
+                    <div class="photo-info-bg top">
+                        <span id="title">Title</span>
+                        <span id="close" class="clickable">&times</span>
+                    </div>
+                    <div class="photo-info-bg bot">
+                        <span id="album" class="clickable">From Album</span>
+                        <span id="username" class="clickable">username</span>
+                    </div>
                 </div>
             </div>
-        </div>
         
         <div id="logo-footer"></div>
         
@@ -258,7 +258,6 @@
         const URL = 'https://jsonplaceholder.typicode.com';
         const BY = 15;
         var photos, albums, users, last;
-        var fading = false;
             
         function getPhotos() {
             return $.ajax({
@@ -335,6 +334,10 @@
                 $("#photo").css("background-image", "url(" + photoUrl + ")");
                 $("#album").text(albumname);
                 $("#username").text(uname);
+                
+                $("#username").click(function(){
+                   window.location = 'profile.html?userId=' + (userId+1);
+                });
                 
                 $("#modal-bg").css("display", "flex");
             });

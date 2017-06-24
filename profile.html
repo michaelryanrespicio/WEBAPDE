@@ -290,6 +290,93 @@
         </style>
         
         <style>
+            #photo {
+                background-color: white;
+                position: relative;
+                width: 600px;
+                height: 600px;
+                align-self: center;
+                margin: auto;
+            }
+            
+            #photo img {
+                width: 600px;
+                height: 600px;
+            }
+            
+            #modal-bg {
+                background-color: rgba(0,0,0,0.7);
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                display: none;
+                align-content: center;
+            }
+            
+            .top {
+                top: 0px;
+                height: 60px;
+            }
+            
+            .bot {
+                position: absolute;
+                height: 40px;
+                bottom: 0px;
+            }
+            
+            .photo-info-bg {
+                background-color: rgba(0,0,0,0.8);
+                width: 100%;
+                display: none;
+            }
+            
+            #title {
+                position: relative;
+                top: 20px;
+                left: 20px;
+                font-size: 1.2em;
+                font-weight: bold;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #album {
+                position: relative;
+                top: 12px;
+                left: 20px;
+                font-size: 1.5e,;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #username {
+                position: relative;
+                top: 12px;
+                float: right;
+                right: 20px;
+                font-size: 1.5e,;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #close {
+                position: relative;
+                float: right;
+                right: 10px;
+                font-size: 2.2em;
+                color: white;
+            }
+            
+            .clickable:hover,
+            .clickable:focus {
+                cursor: pointer;
+            }
+        </style>
+        
+        <style>
             #post-button{
                 background: url('sprites.png') no-repeat -345px -223px;
                 width: 70px;
@@ -386,8 +473,20 @@
         <div>
             <button id="post-button"></button>
             <button id="album-button"></button>
-        </div>  
+        </div>
         
+        <div id="modal-bg">
+            <div id="photo">
+                <div class="photo-info-bg top">
+                    <span id="title">Title</span>
+                    <span id="close" class="clickable">&times</span>
+                </div>
+                <div class="photo-info-bg bot">
+                    <span id="album" class="clickable">From Album</span>
+                    <span id="username" class="clickable">username</span>
+                </div>
+            </div>
+        </div>
         
         <script>
             const URL = 'https://jsonplaceholder.typicode.com';
@@ -439,12 +538,14 @@
             }
             
             function loadPhotosToAlbums(){
+                var photoscpy = photos.slice();
+                
                 for (var i = 0 ; i < albums.length ; i++) {
                     albums[i].photos = [];
-                    for (var j = photos.length-1 ; j >= 0 ; j--) {
-                        if (albums[i].id == photos[j].albumId) {
-                            albums[i].photos.push(photos[j]);
-                            photos.splice(j,1);
+                    for (var j = photoscpy.length-1 ; j >= 0 ; j--) {
+                        if (albums[i].id == photoscpy[j].albumId) {
+                            albums[i].photos.push(photoscpy[j]);
+                            photoscpy.splice(j,1);
                         }
                     }
                 }
@@ -586,12 +687,12 @@
                 $(ah).append(tn);
                 $(tn).append(img);
                 $(ac).append(ah);
-                addPhotos(albums[num], ac);
+                addPhotos(num, ac);
                 $(".album-div").append(ac);
             }
             
-            function addPhotos(album, container) {
-                
+            function addPhotos(albumId, container) {
+                var album = albums[albumId];
                 var pc = document.createElement("div");
                 $(pc).addClass("photos-container");
                 
@@ -602,6 +703,8 @@
                     $(tn).addClass("thumbnail");
                     $(tn).addClass("photo-pic");
                     
+                    $(tn).attr('data-photoId', i);
+                    $(tn).attr('data-albumId', albumId)
                     $(img).attr('src', album.photos[i].thumbnailUrl);
                     
                     $(tn).append(img);
@@ -657,13 +760,50 @@
                     $(pc).stop();
                     $(pc).toggle(500);
                 });
+                
+                $(document).on('click', '.photo-pic', function(event){
+                    var photoId = event.currentTarget.getAttribute("data-photoId");
+                    var albumId = event.currentTarget.getAttribute("data-albumId");
+                    var album = albums[albumId];
+                    var photo = album.photos[photoId];
+                    
+                    $("#title").text(photo.title);
+                    $("#photo").css("background-image", "url(" + photo.url + ")");
+                    $("#album").text(album.title);
+                    $("#username").text(user.username);
+                    
+                    $("#modal-bg").css("display", "flex");
+                });
+                
+                $(document).on("mouseover", "#photo", function(event){
+                    $(".photo-info-bg").stop();
+                    $(".photo-info-bg").fadeIn(250);
+                });
+
+                $(document).on("mouseout", "#photo", function(event){
+                    $(".photo-info-bg").stop();
+                    $(".photo-info-bg").fadeOut(250);
+                });
+                
+                $("#close").click(function(){
+                    $("#modal-bg").css("display", "none");
+                });
+                
+                window.onclick = function(event) {
+                    if (event.target == document.getElementById("modal-bg")) {
+                        $("#modal-bg").css("display", "none");
+                    }
+                }
+                
+                $("#username").click(function(){
+                   window.location = document.URL; 
+                });
             });
             
             function showPosts() {
                 $(".profile-album-container").hide();
                 $(".profile-posts-container").show();
             }
-            
             
             function showAlbums() {
                 $(".profile-posts-container").hide();
