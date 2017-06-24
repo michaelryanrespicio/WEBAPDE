@@ -491,7 +491,7 @@
         <script>
             const URL = 'https://jsonplaceholder.typicode.com';
             const BY = 5;
-            var u_id, a_ids = [];
+            var u_id, a_id = null;
             var posts, user, photos, albums;
             var lastPost, lastAlbum;
             
@@ -534,6 +534,8 @@
                 }).then(function(data){
                     albums = data;
                     lastAlbum = albums.length-1;
+                    /*if (lastAlbum > BY)
+                    a_id = albums[lastAlbum-]*/
                 });
             }
             
@@ -617,22 +619,26 @@
                 for (var i = lastPost ; i >= lastPost-(num-1) && i >= 0; i--) {
                     addPost(i);
                     if (i == 0) {
-                        lastPost = 0;
+                        lastPost = -1;
                         $("#more-post").hide();
-                        break;
                     }
                 }
+                lastPost = i;
+            }
+            
+            function loadUntilAlbum() {
+                for (var i = lastAlbum ; albums[i].id >= a_id+1 ; i--)
+                    addAlbum(i);
+                lastAlbum = i;
             }
             
             function loadNextAlbums(num) {
-               for (var i = lastAlbum ; i >= lastAlbum-(num-1) && i >= 0; i--) {
+              for (var i = lastAlbum ; i >= lastAlbum-(num-1) && i >= 0; i--) {
                     addAlbum(i);
-                    if (i == 0) {
-                        lastAlbum = 0;
+                    if (i == 0) 
                         $("#more-album").hide();
-                        break;
-                    }
-                } 
+              }
+              lastAlbum = i;
             }
             
             function addPost(num) {
@@ -673,6 +679,8 @@
                 var img = document.createElement("img");
                 
                 $(ac).addClass("album-container");
+                if (a_id != null && albums[num].id == a_id+1)
+                    $(ac).attr("id", "scroll");
                 $(title).addClass("title");
                 $(tn).addClass("thumbnail");
                 $(tn).addClass("album-pic");
@@ -712,15 +720,21 @@
                 }
                 
                 $(container).append(pc);
-                $(pc).hide();
+                if (a_id == null || album.id != a_id+1)
+                    $(pc).hide();
             }
             
             $(document).ready(function(){
                 
-                u_id = document.URL;
-                u_id = u_id.substr(u_id.indexOf("?")+1);
-                u_id = u_id.substr(u_id.indexOf("=")+1);
+                var urlStr = document.URL;
+                urlStr = urlStr.substr(urlStr.indexOf("?")+1);
+                urlStr = urlStr.split("&", 2);
+                u_id = urlStr[0].substr(urlStr[0].indexOf("=")+1);
                 u_id--;
+                if (urlStr.length == 2) {
+                    a_id = urlStr[1].substr(urlStr[1].indexOf("=")+1);
+                    a_id--;
+                }
                 
                 $.when(getUser(), getPosts()).done(function(){
                     loadHeader();
@@ -731,19 +745,27 @@
                 $.when(getAlbums()).done(function(){
                    $.when(getPhotos()).done(function(){
                        loadPhotosToAlbums();
-                       loadNextAlbums(BY);
+                       
+                       if (a_id != null) {
+                           
+                           loadUntilAlbum();
+                           
+                            $('html, body').animate({
+                               scrollTop: $("#scroll").offset().top - 80}, 500);
+    
+                       } else loadNextAlbums(BY);
                    });
                 });
                 
-                showPosts();
+                if (urlStr.length == 2) 
+                    showAlbums();
+                else showPosts();
                 
                 $("#more-post").click(function(){
-                    lastPost -= BY;
                     loadNextPosts(BY);
                 });
                 
                 $("#more-album").click(function(){
-                    lastAlbum -= BY;
                     loadNextAlbums(BY);
                 });
                 

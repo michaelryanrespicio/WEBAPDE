@@ -291,7 +291,8 @@
             for (var i = last ; i >= last-(num-1) && i >= 0 ; i--) {
                 addPic(i);
                 if (i == 0) {
-                    last = 0;
+                    last = -1;
+                    $("#more").hide();
                     break;
                 }
             }
@@ -338,6 +339,10 @@
                 $("#username").click(function(){
                    window.location = 'profile.html?userId=' + (userId+1);
                 });
+                
+                $("#album").click(function(){
+                   window.location = 'profile.html?userId=' + (userId+1) + '&albumId=' + (albumId+1);
+                })
                 
                 $("#modal-bg").css("display", "flex");
             });

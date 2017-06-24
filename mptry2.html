@@ -236,11 +236,10 @@
             function loadNext(by) {
                 for (var i = last ; i >= last-(by-1) && i >= 0 ; i--) {
                     addPost(i);
-                    if (i == 0) {
-                        last = 0;
-                        break;
-                    }
+                    if (i == 0) 
+                        $("#more-post").hide();
                 }
+                last = i;
             }
             
             function addPost(num) {          
@@ -282,7 +281,6 @@
             
             $(document).ready(function(){
                 $("#more-post").click(function(){
-                    last -= BY;
                     loadNext(BY);
                 });
                 
