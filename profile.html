@@ -193,8 +193,22 @@
                 align-items: center;
             }
             
+            .photos-container {
+                position: relative;
+                margin: 0 auto;
+                width: 95%;
+                padding: 20px;
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            
             .album-pic {
                 margin: 0 auto;
+            }
+            
+            .photo-pic {
+                margin-bottom: 15px;
             }
             
             .title{
@@ -206,6 +220,10 @@
             .thumbnail {
                 width: 150px;
                 height: 150px;
+            }
+            
+            .thumbnail:hover {
+                cursor: pointer;
             }
             
              .thumbnail img {
@@ -222,7 +240,7 @@
                 margin-top: 0%;
             }
             
-            album-div{
+            .album-div{
 				padding: 20px;
 				width: 95%;
 				left: 10px;
@@ -427,7 +445,6 @@
                         if (albums[i].id == photos[j].albumId) {
                             albums[i].photos.push(photos[j]);
                             photos.splice(j,1);
-                            break;
                         }
                     }
                 }
@@ -569,7 +586,30 @@
                 $(ah).append(tn);
                 $(tn).append(img);
                 $(ac).append(ah);
+                addPhotos(albums[num], ac);
                 $(".album-div").append(ac);
+            }
+            
+            function addPhotos(album, container) {
+                
+                var pc = document.createElement("div");
+                $(pc).addClass("photos-container");
+                
+                for (var i = album.photos.length-1 ; i >= 0 ; i--) {
+                    var tn = document.createElement("div");
+                    var img = document.createElement("img");
+                    
+                    $(tn).addClass("thumbnail");
+                    $(tn).addClass("photo-pic");
+                    
+                    $(img).attr('src', album.photos[i].thumbnailUrl);
+                    
+                    $(tn).append(img);
+                    $(pc).append(tn);
+                }
+                
+                $(container).append(pc);
+                $(pc).hide();
             }
             
             $(document).ready(function(){
@@ -610,6 +650,12 @@
                 
                 $("#album-button").click(function(){
                     showAlbums();
+                });
+                
+                $(document).on('click', '.album-pic', function(){
+                    var pc = $(this).parent().parent().find(".photos-container");
+                    $(pc).stop();
+                    $(pc).toggle(500);
                 });
             });
             
