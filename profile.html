@@ -421,14 +421,31 @@
             }
             
             function loadPhotosToAlbums(){
-                for (var i = 0 ; i < albums.length ; i++)
+                for (var i = 0 ; i < albums.length ; i++) {
                     albums[i].photos = [];
+                    for (var j = photos.length-1 ; j >= 0 ; j--) {
+                        if (albums[i].id == photos[j].albumId) {
+                            albums[i].photos.push(photos[j]);
+                            photos.splice(j,1);
+                            break;
+                        }
+                    }
+                }
+                    
                 
-                for (var i = 0 ; i < photos.length ; i++)
-                    (albums[photos[i].albumId-1].photos).push(photos[i]);
+                for (var i = 0 ; i < photos.length ; i++) {
+                    var ph = photos[i];
+                    for (var j = 0 ; j < albums.length ; j++) {
+                        var al = albums[j];
+                        if (ph.albumId = al.id) {
+                            al.photos.push(ph);
+                            break;
+                        }
+                    }
+                }
             }
             
-            function loadHeader(){
+            function loadHeader() {
                 $("#profile-name").text(user.name);
                 $("#profile-username").text("(" + user.username + ")");
             }
@@ -583,7 +600,7 @@
                 $.when(getAlbums()).done(function(){
                    $.when(getPhotos()).done(function(){
                        loadPhotosToAlbums();
-                       loadNextAlbums(BY); 
+                       loadNextAlbums(BY);
                    });
                 });
                 
