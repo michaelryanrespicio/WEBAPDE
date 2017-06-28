@@ -1,0 +1,408 @@
+/* HEADER */
+            .page-header{
+                height: 80px;
+                background-color: forestgreen;
+                position: fixed;
+                top: 0;
+                right: 0;
+                left: 0;
+                min-width: 800px;
+                z-index: 1;
+            }
+            
+            .page-header-container{
+                margin-left: 100px;
+                margin-top: 5px;
+            }
+            
+            .page-header-container button{
+                margin-right: 25px;
+            }
+            
+            #highlight {
+                background-color: darkgreen;
+                width: 90px;
+                height: 80px;
+                position: fixed;
+                left: 186px;
+                top: 0;
+                z-index: -1;
+            }
+            
+            #home{    
+                background: url('sprites.png') no-repeat -355px -280px;
+                width: 72px;
+                height: 71px;
+                border: none;
+            }
+            
+            #picture{
+                background: url('sprites.png') no-repeat -177px -290px;
+                width: 76px;
+                height: 60px;
+                border: none;
+            }
+            
+            #profile{
+                background: url('sprites.png') no-repeat -11px -287px;
+                width: 61px;
+                height: 66px;
+                border: none;
+            }
+            
+            #hanap{
+                margin-right: 50px;
+                margin-top: 20px;
+                height: 35px;
+                width: 250px;
+                border-radius: 10px;
+            }
+            
+            #search-button{
+                background: url('sprites.png') no-repeat -104px -296px;
+                width: 44px;
+                height: 44px;
+                border: none;
+                margin-top: 15px;
+                margin-right: 10px;
+                
+                
+            }
+
+            .divider{
+                height: 10%;
+            }
+            
+            .body-container{
+                position: relative;
+            }
+            
+            .body-header{
+                position: relative;
+                height: 150px;
+                top: 10px;
+                width: 100%;
+                border-top: 1px dashed forestgreen;
+                border-bottom: .5px solid forestgreen;
+                min-width: 800px;
+            }
+            
+            #profile-name{
+                position: relative;
+                top: 60px;
+                margin-left: 40px;
+                font-size: 75px;
+                font-family: Patrick Hand SC;
+                color: forestgreen;
+            }
+            
+            #profile-username{
+                position: relative;
+                top: 60px;
+                font-size: 20px;
+                font-family: Tahoma;
+            }
+            .profile-mp-container{
+                margin-top: 20px;
+                width: 100%;
+                position: absolute;
+                min-width: 800px;
+            }
+            
+            .profile-menu{
+                position: relative;
+                width: 25%;
+                float: left;
+            }
+            
+            .profile-posts-container{
+                position: relative;
+                width: 70%;
+                float: right;
+                right: 0;
+                border-left: 10px solid darkgreen;
+                border-right: 10px solid darkgreen;
+            }
+            
+            .profile-album-container{
+                position: relative;
+                width: 70%;
+                background-color: aquamarine;
+                float: right;
+                right: 0;
+                border-left: 10px solid darkgreen;
+                border-right: 10px solid darkgreen;
+                display: hide;
+            }
+            
+            .post-by-user{  
+                font-size: small;
+                font-family: arial, sans-serif;
+                line-height: 1.2;
+                text-align: left;
+            }
+            
+             a{
+                text-decoration: none;
+                font-style: normal;
+                color: seagreen;
+            }
+            
+            .post{
+                margin-top: 5px;
+                margin-bottom: 1px;    
+                margin-left: 10px;
+                
+            }
+            
+            .post-info{
+                font-size: 14px;
+                line-height: 20px;
+                font-family: sans-serif;
+                color: darkslategray;
+            }
+            
+            .post-container{
+                border-bottom: 1px solid #e6ecf0;
+                border-top: 1px solid #e6ecf0;
+                width: 100%;
+                display: grid;
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .album-container {
+                border-bottom: 1px solid #e6ecf0;
+                border-top: 1px solid #e6ecf0;
+                position: relative;
+                margin: 0 auto;
+                padding-bottom: 20px;
+                width: 95%;
+                display: grid;
+                flex-direction: row;
+                align-items: center;
+            }
+            
+            .photos-container {
+                position: relative;
+                margin: 0 auto;
+                width: 95%;
+                padding: 20px;
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+            }
+            
+            .album-pic {
+                margin: 0 auto;
+            }
+            
+            .photo-pic {
+                margin-bottom: 15px;
+            }
+            
+            .title{
+                color: darkgreen;
+                font-size: 40px;
+                font-family: Patrick Hand SC;
+            }
+            
+            .thumbnail {
+                width: 150px;
+                height: 150px;
+            }
+            
+            .thumbnail:hover {
+                cursor: pointer;
+            }
+            
+             .thumbnail img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            
+            .post-div{
+                padding: 20px;
+                width: 95%;
+                left: 10px;
+                font-family: Source Sans Pro;
+                margin-top: 0%;
+            }
+            
+            .album-div{
+                padding: 20px;
+                width: 95%;
+                left: 10px;
+                font-family: Source Sans Pro;
+                margin-top: 0%;
+            }
+
+             .more{
+                font-family: sans-serif;
+                font-size: 12px;
+                position: relative;
+                width: 100px;
+                margin: auto;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            
+            .more:hover{
+                color: green;
+                text-decoration: underline;
+
+            }
+            
+            .about{
+                position: relative;
+                height: 500px;
+                padding-top: 15px;
+                border: 2px solid darkgreen;
+                border-radius: 20px;
+                
+            }
+            
+            p {
+                font-family: sans-serif;
+                color: darkslategray;
+                position: relative;
+                left: 10px; 
+            }
+            
+            p.indent {
+                left: 20px; 
+            }
+            
+            body{
+                height: 99%;
+                background-color: #bdd4b4;
+            }
+
+            #photo {
+                background-color: white;
+                position: relative;
+                width: 600px;
+                height: 600px;
+                align-self: center;
+                margin: auto;
+            }
+            
+            #photo img {
+                width: 600px;
+                height: 600px;
+            }
+            
+            #modal-bg {
+                background-color: rgba(0,0,0,0.7);
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                display: none;
+                align-content: center;
+            }
+            
+            .top {
+                top: 0px;
+                height: 60px;
+            }
+            
+            .bot {
+                position: absolute;
+                height: 40px;
+                bottom: 0px;
+            }
+            
+            .photo-info-bg {
+                background-color: rgba(0,0,0,0.8);
+                width: 100%;
+                display: none;
+            }
+            
+            #title {
+                position: relative;
+                top: 20px;
+                left: 20px;
+                font-size: 1.2em;
+                font-weight: bold;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #album {
+                position: relative;
+                top: 12px;
+                left: 20px;
+                font-size: 1.5e,;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #username {
+                position: relative;
+                top: 12px;
+                float: right;
+                right: 20px;
+                font-size: 1.5e,;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #close {
+                position: relative;
+                float: right;
+                right: 10px;
+                font-size: 2.2em;
+                color: white;
+            }
+            
+            .clickable:hover,
+            .clickable:focus {
+                cursor: pointer;
+            }
+
+            #post-button{
+                background: url('sprites.png') no-repeat -345px -223px;
+                width: 70px;
+                height: 50px;
+                position: fixed;
+                right: 0;
+                top: 100px;
+                border-bottom-left-radius: 10px;
+                border-top-left-radius: 10px;
+                background-color: palegreen;
+                border-color: darkseagreen;
+                z-index: 1;
+            }
+            
+            #album-button{
+                background: url('sprites.png') no-repeat -280px -220px;
+                width: 70px;
+                height: 50px;
+                position: fixed;
+                right: 0;
+                top: 160px;
+                border-bottom-left-radius: 10px;
+                border-top-left-radius: 10px;
+                background-color: palegreen;
+                border-color: darkseagreen;
+                z-index: 1;
+            }
+            #footer {
+                width: 100%;
+                height: 30px;
+                position: absolute;
+                bottom: -50px;
+            }
+            
+            #logo-footer{
+                background: url('sprites.png') no-repeat -209px -4px;
+                width: 207px;
+                height: 40px;
+                position: fixed;
+                bottom: 10px;
+                right: 5px;
+            }

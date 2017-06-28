@@ -1,0 +1,202 @@
+.page-header{
+            height: 80px;
+            background-color: forestgreen;
+            position: fixed;
+            top: 0;
+            right: 0;
+            left: 0;
+            min-width: 800px;
+            z-index: 1;
+            }
+            
+            .page-header-container{
+                margin-left: 100px;
+                margin-top: 5px;
+            }
+            
+            .page-header-container button{
+                margin-right: 25px;
+            }
+            
+            #highlight {
+                background-color: darkgreen;
+                width: 100px;
+                height: 80px;
+                position: fixed;
+                left: 278px;
+                top: 0;
+                z-index: -1;
+            }
+            
+            #home{    
+                background: url('sprites.png') no-repeat -355px -280px;
+                width: 72px;
+                height: 71px;
+                border: none;
+            }
+            
+            #picture{
+                background: url('sprites.png') no-repeat -177px -290px;
+                width: 76px;
+                height: 60px;
+                border: none;
+            }
+            
+            #profile{
+                background: url('sprites.png') no-repeat -11px -287px;
+                width: 61px;
+                height: 66px;
+                border: none;
+            }
+            
+            #hanap{
+                margin-right: 50px;
+                margin-top: 20px;
+                height: 35px;
+                width: 250px;
+            }
+            
+            #search-button{
+                background: url('sprites.png') no-repeat -104px -296px;
+                width: 44px;
+                height: 44px;
+                border: none;
+                margin-top: 15px;
+                margin-right: 10px;
+                
+            }
+            
+            #container {
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                position: relative;
+                top: 70px;
+            }
+            
+            body{
+            	background-color: #bdd4b4;
+            }
+            
+            .thumbnail {
+                margin: 10px;
+                border: 1px solid #888;
+                width: 150px;
+                height: 150px;
+                float: left;
+            }
+            
+            .thumbnail img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            #photo {
+                background-color: white;
+                position: relative;
+                width: 600px;
+                height: 600px;
+                align-self: center;
+                margin: auto;
+            }
+            
+            #photo img {
+                width: 600px;
+                height: 600px;
+            }
+            
+            #more{
+            	font-family: sans-serif;
+                font-size: 12px;
+            	position: relative;
+                width: 100px;
+                top: 120px;
+                height: 50px;
+                margin: auto;
+            }
+            
+            #more:hover{
+                color: green;
+                text-decoration: underline;
+
+            }
+            
+            #modal-bg {
+                background-color: rgba(0,0,0,0.7);
+                position: fixed;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0;
+                z-index: 1;
+                display: none;
+                align-content: center;
+            }
+            
+            .top {
+                top: 0px;
+                height: 60px;
+            }
+            
+            .bot {
+                position: absolute;
+                height: 40px;
+                bottom: 0px;
+            }
+            
+            .photo-info-bg {
+                background-color: rgba(0,0,0,0.8);
+                width: 100%;
+                display: none;
+            }
+            
+            #title {
+                position: relative;
+                top: 20px;
+                left: 20px;
+                font-size: 1.2em;
+                font-weight: bold;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #album {
+                position: relative;
+                top: 12px;
+                left: 20px;
+                font-size: 1.5e,;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #username {
+                position: relative;
+                top: 12px;
+                float: right;
+                right: 20px;
+                font-size: 1.5e,;
+                font-family: sans-serif;
+                color: white;
+            }
+            
+            #close {
+                position: relative;
+                float: right;
+                right: 10px;
+                font-size: 2.2em;
+                color: white;
+            }
+            
+            .clickable:hover,
+            .clickable:focus {
+                cursor: pointer;
+            }
+
+            #logo-footer{
+                background: url('sprites.png') no-repeat -209px -4px;
+                width: 207px;
+                height: 40px;
+                position: fixed;
+                bottom: 10px;
+                right: 5px;
+            }

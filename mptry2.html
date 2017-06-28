@@ -1,23 +1,21 @@
 <html>
     <head>
-		<title>TweetBook</title>
-        <script src="jquery-3.2.1.js"></script>
+        <title>TweetBook</title>
+   		<script src="jquery-3.2.1.js"></script>
         <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro" rel="stylesheet">
         <link href="https://fonts.googleapis.com/css?family=Patrick+Hand+SC" rel="stylesheet">
         <link rel="shortcut icon" href="logo.png"/>
-        <link rel="stylesheet" type="text/css" href="photopage.css">
-        <script src="photopage.js"></script>
+        <link rel="stylesheet" type="text/css" href="mptry2.css">
+        <script src="mptry2.js"></script>
     </head>
-    
+
     <body>
-        
         <div class="page-header">
             <div class="page-header-container">
+                <div id="highlight"></div>
                 <a href="mptry2.html"><button id="home"> </button></a>
                 <a id="profile"><button id="profile"></button></a>
-                <div id="highlight"></div>
                 <a href="photopage.html"><button id="picture"></button></a>
-                
                 <div style="float: right">
                     <form style="float:right">
                         <input id="hanap" type="text">
@@ -27,28 +25,13 @@
                 </div>    
             </div>
         </div>
-        
-        <div id="container">
-            
+        <div id="post-div">
         </div>
-        
-        <div id="more">See more photos...</div>
-        
-            <div id="modal-bg">
-                <div id="photo">
-                    <div class="photo-info-bg top">
-                        <span id="title">Title</span>
-                        <span id="close" class="clickable">&times</span>
-                    </div>
-                    <div class="photo-info-bg bot">
-                        <span id="album" class="clickable">From Album</span>
-                        <span id="username" class="clickable">username</span>
-                    </div>
-                </div>
-            </div>
-        
+
+        <div id="more-post"> <button id="button-more-post"> See more posts...</button></div>
         <div id="logo-footer"></div>
-        
+        <div style="height: 20px"></div>
         
     </body>
+    
 </html>
